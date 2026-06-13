@@ -127,7 +127,7 @@ def render_vertical_short(
 
     if n == 1:
         filter_parts.append(
-            f"[0:v]subtitles=captions.srt{fontsdir_arg}:"
+            f"[0:v]subtitles=filename='captions.srt'{fontsdir_arg}:"
             f"force_style='{force_style}'[final]"
         )
     else:
@@ -142,7 +142,7 @@ def render_vertical_short(
             )
             prev = out
         filter_parts.append(
-            f"{prev}subtitles=captions.srt{fontsdir_arg}:"
+            f"{prev}subtitles=filename='captions.srt'{fontsdir_arg}:"
             f"force_style='{force_style}'[final]"
         )
 
