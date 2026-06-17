@@ -112,7 +112,7 @@ def main() -> None:
     ap.add_argument("--channel", required=True, choices=list_channel_ids())
     ap.add_argument("--topic", default="", help="Optional topic hint for Groq.")
     ap.add_argument("--upload", action="store_true", help="Upload to YouTube after render.")
-    ap.add_argument("--privacy", default="private", choices=["private", "unlisted", "public"])
+    ap.add_argument("--privacy", default="public", choices=["private", "unlisted", "public"])
     args = ap.parse_args()
 
     preset = get_preset(args.channel)
@@ -201,12 +201,16 @@ def main() -> None:
     if variants:
         for v in variants:
             node = pack["variants"][v["lang"]]
+            v_voice = v.get("tts_voice")
+            if isinstance(v_voice, list):
+                v_voice = random.choice(v_voice)
+
             _render_and_upload(
                 variant_label=v["label"],
                 narration=node["full_narration"],
                 title=node["youtube_title"],
                 description=node.get("youtube_description", ""),
-                voice=v.get("tts_voice"),
+                voice=v_voice,
                 font_file=v.get("caption_font", "CreepsterCaps.ttf"),
                 font_name=v.get("caption_font_name", "Creepster"),
                 image_paths=image_paths,
@@ -217,12 +221,16 @@ def main() -> None:
                 yt_token_env=v.get("yt_token_env", "YT_REFRESH_TOKEN"),
             )
     else:
+        p_voice = preset.get("tts_voice")
+        if isinstance(p_voice, list):
+            p_voice = random.choice(p_voice)
+
         primary_video_path = _render_and_upload(
             variant_label=preset.get("language", "en"),
             narration=narration,
             title=title,
             description=pack.get("youtube_description", ""),
-            voice=preset.get("tts_voice") or os.environ.get("EDGE_TTS_VOICE"),
+            voice=p_voice or os.environ.get("EDGE_TTS_VOICE"),
             font_file=preset.get("caption_font", "CreepsterCaps.ttf"),
             font_name=preset.get("caption_font_name", "Creepster"),
             image_paths=image_paths,

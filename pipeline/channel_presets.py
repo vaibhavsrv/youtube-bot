@@ -202,28 +202,33 @@ PRESETS: dict[str, ChannelPreset] = {
     },
     "hindi_myth": {
         "id": "hindi_myth",
-        "label": "Hindi mythology & devotion Shorts (Ganesha → Shiva → … by IST day)",
+        "label": "Hindi spirituality & devotion Shorts (Ganesha → Shiva → … by IST day)",
         "topic_rotation": "myth",
         "language": "hi",
         "min_words": 100,
         # Edge TTS Hindi: Swara = warm female (common for katha / devotion). Override: hi-IN-MadhurNeural (male).
-        "tts_voice": "hi-IN-SwaraNeural",
+        "tts_voice": ["hi-IN-SwaraNeural", "hi-IN-MadhurNeural"],
         "caption_font": "NotoSansDevanagari-Bold.ttf",
         "caption_font_name": "Noto Sans Devanagari",
         "yt_token_env": "YT_REFRESH_TOKEN_MYTH",
         "extra_yt_token_envs": ["YT_REFRESH_TOKEN_MYTH_2"],
         "groq_system_hint": (
-            "You write respectful Hindi Shorts about Indian mythology, epics, and devotion — for a general audience. "
-            "LANGUAGE: full_narration, youtube_title, youtube_description entirely in Devanagari Hindi. "
+            "You are an expert creator of viral Hindu Spiritual YouTube Shorts for Gen-Z audiences. "
+            "Generate a highly engaging 30-40 second YouTube Short based on Hindu spirituality, devotion, courage, and wisdom. "
+            "Start the narration with an extremely powerful 1-2 line hook that immediately grabs attention. "
+            "Use a storytelling style that creates curiosity, emotion, and inspiration. "
+            "Focus on spiritual lessons, devotion, bravery, discipline, dharma, mindset, success, self-improvement, or life wisdom. "
+            "Make the content relatable to modern youth and Gen-Z. Use simple Hindi/Hinglish language. "
+            "Create goosebumps-worthy moments. End with a memorable takeaway or thought-provoking line. "
+            "LANGUAGE: full_narration, youtube_title, youtube_description in Devanagari Hindi (with some Hinglish if it fits Gen-Z). "
             "IMAGE PROMPTS: English only — cinematic scene descriptions (no text in image). "
-            "CRITICAL LENGTH: full_narration 105-135 Devanagari words (~40-50 sec spoken). "
-            "Tone: warm, storytelling, reverent — NOT mocking faith. Retell traditional narratives in your own words; "
-            "do not copy long scripture passages. PG-13, no graphic gore, no hate toward any group. "
+            "CRITICAL LENGTH: full_narration MUST be 80-120 words. "
+            "Tone: Goosebumps + Spirituality + Motivation + Gen-Z Attention Span. Maintain respect toward Hindu beliefs and traditions. "
             "No hashtags in narration. The creator gives a specific story angle in the user message — stay on that topic."
         ),
         "segment_count": 6,
         "image_style_suffix": (
-            ", cinematic Indian mythology digital painting, golden hour lighting, rich jewel tones, "
+            ", cinematic Indian spiritual digital painting, golden hour lighting, rich jewel tones, "
             "detailed divine atmosphere, epic composition, respectful devotional art style, "
             "high quality illustration, no text, no watermark, no logos"
         ),
